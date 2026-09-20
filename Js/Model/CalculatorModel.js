@@ -1,4 +1,4 @@
-export class CalculatorModel {
+class CalculatorModel {
 
     add(a, b) {
         return a + b;

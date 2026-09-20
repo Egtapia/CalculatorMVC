@@ -1,4 +1,4 @@
-export class CalculatorController {
+class CalculatorController {
 
     constructor(model) {
         this.model = model;
