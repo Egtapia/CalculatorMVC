@@ -1,4 +1,4 @@
-class CalculatorController {
+export class CalculatorController {
 
     constructor(model) {
         this.model = model;
@@ -178,6 +178,13 @@ class CalculatorController {
             return this.clear();
         }
 
+        if (this.waitingForSecondOperand && this.operator !== null) {
+            this.operator = null;
+            this.waitingForSecondOperand = false;
+
+            return this.currentValue;
+        }
+
         if (
             this.currentValue.length === 1 ||
             (
@@ -194,6 +201,10 @@ class CalculatorController {
     }
 
     getDisplayValue() {
+        if (this.waitingForSecondOperand && this.operator !== null) {
+            return this.operator;
+        }
+
         return this.currentValue;
     }
 

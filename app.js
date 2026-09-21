@@ -1,8 +1,17 @@
+import { CalculatorModel } from './Js/Model/CalculatorModel.js';
+import { CalculatorController } from './controller/CalculatorController.js';
+
 const model = new CalculatorModel();
 const controller = new CalculatorController(model);
 
 const display = document.getElementById('result');
 const keypad = document.querySelector('.calculator-keypad');
+const operatorSymbols = {
+    add: '+',
+    subtract: '-',
+    multiply: '×',
+    divide: '÷'
+};
 
 keypad.addEventListener('click', (event) => {
     const target = event.target;
@@ -24,10 +33,10 @@ keypad.addEventListener('click', (event) => {
     } else if (action === 'calculate') {
         newValue = controller.calculate();
     } else if (['add', 'subtract', 'multiply', 'divide'].includes(action)) {
-        newValue = controller.chooseOperator(action);
+        newValue = controller.chooseOperator(operatorSymbols[action]);
     }
 
     if (newValue !== undefined) {
-        display.textContent = newValue;
+        display.textContent = controller.getDisplayValue();
     }
 });

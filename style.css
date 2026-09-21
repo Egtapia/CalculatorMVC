@@ -1,0 +1,111 @@
+:root {
+  --bg-color: #f4f5f7;
+  --calc-bg: #ffffff;
+  --screen-bg: #2a2d34;
+  --screen-text: #ff7f6e; /* Coral */
+  --btn-num-bg: #dceaf8;  /* Very Light Blue */
+  --btn-num-text: #7a98ba;
+  --btn-op-bg: #98c4f0;   /* Light Blue */
+  --btn-op-text: #ffffff;
+  --btn-eq-bg: #ff7f6e;   /* Coral */
+  --btn-eq-text: #ffffff;
+  --shadow-soft: 0 15px 35px rgba(0, 0, 0, 0.08);
+  --shadow-btn: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-inner: inset 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.calculator-container {
+  background-color: var(--calc-bg);
+  width: 340px;
+  padding: 24px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-soft);
+}
+
+.calculator-display {
+  background-color: var(--screen-bg);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-inner);
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70px;
+}
+
+#result {
+  color: var(--screen-text);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(255, 127, 110, 0.4);
+  display: block; 
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.calculator-keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+button {
+  border: none;
+  outline: none;
+  border-radius: 14px;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 65px;
+  box-shadow: var(--shadow-btn);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+button[data-number], 
+button[data-action="decimal"] {
+  background-color: var(--btn-num-bg);
+  color: var(--btn-num-text);
+}
+
+button[data-action="clear"], 
+button[data-action="delete"],
+button[data-action="divide"], 
+button[data-action="multiply"], 
+button[data-action="subtract"], 
+button[data-action="add"] {
+  background-color: var(--btn-op-bg);
+  color: var(--btn-op-text);
+}
+
+/* Calculate/Equals button */
+button[data-action="calculate"] {
+  background-color: var(--btn-eq-bg);
+  color: var(--btn-eq-text);
+  grid-row: span 2; 
+}
+
+/* Wide zero button */
+.btn-span-two {
+  grid-column: span 2;
+}

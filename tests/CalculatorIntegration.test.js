@@ -90,3 +90,31 @@ test("Division by zero returns Error", () => {
 
     assert.equal(result, "Error");
 });
+
+test("Delete removes a pending operator without deleting the number", () => {
+    const calculator = createCalculator();
+
+    calculator.inputDigit("5");
+    calculator.chooseOperator("+");
+
+    calculator.deleteLastDigit();
+
+    assert.equal(calculator.getDisplayValue(), "5");
+
+    calculator.inputDigit("3");
+
+    assert.equal(calculator.getDisplayValue(), "53");
+});
+
+test("Display shows only the operator until the next number is entered", () => {
+    const calculator = createCalculator();
+
+    calculator.inputDigit("8");
+    assert.equal(calculator.getDisplayValue(), "8");
+
+    calculator.chooseOperator("+");
+    assert.equal(calculator.getDisplayValue(), "+");
+
+    calculator.inputDigit("8");
+    assert.equal(calculator.getDisplayValue(), "8");
+});
